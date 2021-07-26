@@ -12,3 +12,15 @@ tap.test('on finish', { timeout: 1000 }, function (tt) {
         t.end();
     });
 });
+
+var tapeHarness = tape.createHarness();
+
+tap.test('on finish (createHarness)', { timeout: 1000 }, function (tt) {
+    tt.plan(1);
+    tapeHarness.onFinish(function () {
+        tt.pass('tape ended');
+    });
+    tapeHarness('dummy test', function (t) {
+        t.end();
+    });
+});
